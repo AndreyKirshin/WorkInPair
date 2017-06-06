@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 /**
  * Created by 1 on 30.05.2017.
  */
@@ -6,4 +8,6 @@ public interface MyArrayStackIF<E> {
     E pop();
     E peek();
     int size();
+
+
 }

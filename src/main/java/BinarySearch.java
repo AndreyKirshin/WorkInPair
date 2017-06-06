@@ -2,25 +2,33 @@
  * Created by 1 on 30.05.2017.
  */
 public class BinarySearch {
+    int element;
+    int[] array;
+    int left;
+    int right;
 
+    public BinarySearch(int element, int[] array) {
+        this.element = element;
+        this.array = array;
+        left = 0;
+        right = array.length - 1;
+    }
 
-    public static int biSort(int element, int[] array) {
-        int indexMiddle = (array.length - 1)/2;
+    public int getResult(){
+        return biSort(element, array, left, right);
+    }
 
-        if(element == array[indexMiddle]) return indexMiddle;
+    public int biSort(int element, int[] array, int left, int right) {
+        if(left > right) return -1;
+        int indexMiddle = left + (right - left)/2;
 
+        if(array[indexMiddle] == element) return indexMiddle;
         else if(element > array[indexMiddle]){
-            int[] newArr = new int[indexMiddle];
-            System.arraycopy(array, indexMiddle, newArr, 0, indexMiddle);
-            if(element > newArr[newArr.length-1]) return -1;
-            biSort(element, newArr);
+            return biSort(element, array, indexMiddle + 1, right);
         }
-        else if(element < array[indexMiddle]) {
-            int[] newArr = new int[indexMiddle];
-            System.arraycopy(array, 0, newArr, 0, indexMiddle);
-            if (element < newArr[0]) return -1;
-            biSort(element, newArr);
+        else if(element < array[indexMiddle]){
+            return biSort(element, array, left + 1, indexMiddle);
         }
-        return -1;
+        else return indexMiddle;
     }
 }
